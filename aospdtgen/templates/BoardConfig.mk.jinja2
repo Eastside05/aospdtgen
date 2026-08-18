@@ -29,10 +29,6 @@ TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := {{ device_info.second_cpu_variant }}
 
 {% endif %}
-{% if device_info.arch.bitness != 64 %}
-TARGET_USES_64_BIT_BINDER := true
-
-{% endif %}
 {% if not device_info.device_uses_updatable_apex %}
 # APEX
 OVERRIDE_TARGET_FLATTEN_APEX := true
