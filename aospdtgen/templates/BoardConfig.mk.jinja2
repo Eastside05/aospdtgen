@@ -99,21 +99,19 @@ BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := {{ boot_configuration.init_boot_image_in
 {% if boot_configuration.vendor_boot_image_info %}
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := {{ boot_configuration.vendor_boot_image_info.origsize }}
 {% endif %}
-{% if boot_configuration.vendor_kernel_boot_image_info %}
-BOARD_VENDOR_KERNEL_BOOTIMAGE_PARTITION_SIZE := {{ boot_configuration.vendor_kernel_boot_image_info.origsize }}
-{% endif %}
 {% if device_info.device_uses_dynamic_partitions %}
 BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
-BOARD_SUPER_PARTITION_GROUPS := {{ device_info.manufacturer }}_dynamic_partitions
-BOARD_{{ device_info.manufacturer|upper }}_DYNAMIC_PARTITIONS_PARTITION_LIST :=
+BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
+BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST :=
 {%- for partition in fstab.get_logical_partitions_models() %} \
     {{ partition.name }}
 {%- endfor %}
 
-BOARD_{{ device_info.manufacturer|upper }}_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
+BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 {% endif %}
 
 # Platform
+BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := {{ device_info.platform }}
 
 # Recovery
